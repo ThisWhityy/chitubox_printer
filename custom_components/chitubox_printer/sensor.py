@@ -1,44 +1,36 @@
+"""Sensor platform for ChituBox Printer integration."""
 from homeassistant.helpers.entity import Entity
-from .const import DOMAIN
-
-async def async_setup_entry(hass, config_entry, async_add_entities):
-    """Set up ChituBox printer sensor."""
-    coordinator = hass.data[DOMAIN][config_entry.entry_id]
-    async_add_entities([ChituBoxPrinterSensor(coordinator)])
-
+from .printer import Printer
+from homeassistant.const import CONF_IP_ADDRESS
+from homeassistant.helpers import config_entry
 
 class ChituBoxPrinterSensor(Entity):
     """Representation of a ChituBox printer sensor."""
 
-    def __init__(self, coordinator):
+    def __init__(self, printer_ip):
         """Initialize the sensor."""
-        self.coordinator = coordinator
+        self._printer = Printer(printer_ip)
+        self._name = "ChituBox Printer Status"
+        self._state = None
 
     @property
     def name(self):
         """Return the name of the sensor."""
-        return "ChituBox Printer"
+        return self._name
 
     @property
     def state(self):
         """Return the state of the sensor."""
-        data = self.coordinator.data
-        if data:
-            return data.get("status")
-        return None
-
-    @property
-    def extra_state_attributes(self):
-        """Return the state attributes."""
-        data = self.coordinator.data
-        if data:
-            return {
-                "progress": data.get("progress"),
-                "temperature": data.get("temperature"),
-                "file_name": data.get("file_name"),
-            }
-        return {}
+        return self.printing_status()
 
     def update(self):
-        """Update the sensor."""
-        self.coordinator.async_request_refresh()
+        """Update the sensor state."""
+        self._state = self.printing_status()
+
+    def printing_status(self):
+        """Get the current printing status from the printer."""
+        return self._printer.printingStatus()
+
+    def close(self):
+        """Close the printer connection."""
+        self._printer.close()
