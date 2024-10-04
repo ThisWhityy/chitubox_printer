@@ -1,5 +1,8 @@
 # 🖨️ ChituBox Printer Integration for Home Assistant
 
+
+# THIS IS NOT DONE. THIS IS WIP!
+
 ![HACS Custom](https://img.shields.io/badge/HACS-Custom-blueviolet.svg?style=for-the-badge)  
 Bring any Chitu firmware printer to HA!
 
