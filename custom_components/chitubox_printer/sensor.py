@@ -9,6 +9,7 @@ class ChituBoxPrinterSensor(Entity):
 
     def __init__(self, printer_ip):
         """Initialize the sensor."""
+        self._printer_ip = printer_ip
         self._printer = Printer(printer_ip)
         self._name = "ChituBox Printer Status"
         self._state = None

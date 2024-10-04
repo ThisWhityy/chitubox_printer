@@ -2,8 +2,10 @@
 from homeassistant import config_entries
 from homeassistant.const import CONF_IP_ADDRESS, CONF_NAME
 import socket
+import voluptuous as vol
+from .const import DOMAIN
 
-class ChituBoxPrinterConfigFlow(config_entries.ConfigFlow, domain="chitubox_printer"):
+class ChituBoxPrinterConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for ChituBox Printer integration."""
 
     async def async_step_user(self, user_input=None):
