@@ -1,0 +1,10 @@
+{
+    "domain": "chitubox_printer",
+    "name": "ChituBox Printer",
+    "documentation": "https://github.com/ThisWhityy/chitubox_printer",
+    "requirements": [],
+    "dependencies": [],
+    "codeowners": ["@ThisWhityy"],
+    "version": "1.0.0"
+  }
+  

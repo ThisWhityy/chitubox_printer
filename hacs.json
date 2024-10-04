@@ -1,0 +1,9 @@
+{
+    "name": "ChituBox Printer",
+    "content_in_root": false,
+    "domains": ["chitubox_printer"],
+    "country": "global",
+    "homeassistant": "0.97.0",
+    "render_readme": true
+  }
+  
